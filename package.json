@@ -1,0 +1,16 @@
+{
+  "name": "climbing_app",
+  "version": "1.0.0",
+  "description": "Climbing app for Vishwa Shah.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Siddharth Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "firebase": "^4.13.0"
+  }
+}
