@@ -1,7 +1,3 @@
-# climbing-app
+npm install
 
-`npm install`
-
-`npm install -g nodemon`
-
-`nodemon server.js`
+npm start
