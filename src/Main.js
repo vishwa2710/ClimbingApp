@@ -1,15 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import App from './routesForm';
+import RoutesForm from './routesForm';
+import WorkoutsForm from './workoutsForm';
 import Home from './Home';
 
 const Main = () => (
-	<Main>
+	<main>
 		<Switch>
-			<Route exact path='/' component={Home}/>
-			<Route path='/routesForm' component={App}/>
+			<Route exact path='/' component={ Home }/>
+			<Route exact path='/routes' component={ WorkoutsForm }/>
 		</Switch>
-	</Main>
+	</main>
 )
 
 export default Main;

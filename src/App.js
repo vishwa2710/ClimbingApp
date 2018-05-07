@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from './Header'
-import App from './routesForm'
+import Main from './Main'
 
-const tmpApp = () => (
+const App = () => (
   <div>
     <Header />
-    <App />
+    <Main />
   </div>
 )
 
-export default tmpApp
+export default App
