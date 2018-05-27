@@ -1,214 +1,147 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import FormLabel from "@material-ui/core/FormLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { withStyles } from '@material-ui/core/styles';
 
-class routesForm extends Component {
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  FormControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
+
+const finishOptions = [
+  {label: "Onsight", value: "Onsight"},
+  {label: "Flash", value: "Flash"},
+  {label: "Send", value: "Send"},
+  {label: "Project", value: "Project"}
+]
+
+const boulderingOptions = [
+  {label: "v0", value: "v0"},
+  {label: "v1", value: "v1"},
+  {label: "v2", value: "v2"},
+  {label: "v3", value: "v3"},
+  {label: "v4", value: "v4"},
+  {label: "v5", value: "v5"},
+  {label: "v6", value: "v6"},
+  {label: "v7", value: "v7"},
+  {label: "v8", value: "v8"},
+  {label: "v9", value: "v9"},
+  {label: "v10", value: "v10"},
+  {label: "v11", value: "v11"},
+  {label: "v12", value: "v12"},
+  {label: "v13", value: "v13"},
+  {label: "v14", value: "v14"},
+  {label: "v15", value: "v15"},
+  {label: "v16", value: "v16"}
+]
+
+const topropingOptions = [
+  {label: "5.10a", value: "5.10a"},
+  {label: "5.10b", value: "5.10b"},
+  {label: "5.10c", value: "5.10c"},
+  {label: "5.10d", value: "5.10d"},
+  {label: "5.11a", value: "5.11a"},
+  {label: "5.11b", value: "5.11b"},
+  {label: "5.11c", value: "5.11c"},
+  {label: "5.11d", value: "5.11d"},
+  {label: "5.12a", value: "5.12a"},
+  {label: "5.12b", value: "5.12b"},
+  {label: "5.12c", value: "5.12c"},
+  {label: "5.12d", value: "5.12d"},
+  {label: "5.13a", value: "5.13a"},
+  {label: "5.13b", value: "5.13b"},
+  {label: "5.13c", value: "5.13c"},
+  {label: "5.13d", value: "5.13d"},
+  {label: "5.14a", value: "5.14a"},
+  {label: "5.14b", value: "5.14b"},
+  {label: "5.14c", value: "5.14c"},
+  {label: "5.14d", value: "5.14d"},
+  {label: "5.15a", value: "5.15a"},
+  {label: "5.15b", value: "5.15b"},
+  {label: "5.15c", value: "5.15c"},
+  {label: "5.15d", value: "5.15d"}
+]
+
+class RoutesForm extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      fullname: "",
-      type: "",
       difficulty: "",
       finish: "",
+      tags: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.setDifficulty = this.setDifficulty.bind(this);
-  }
-
-  setDifficulty(type) {
-    if (type === "bouldering") {
-      this.difficulties = 
-      [
-      <option value="v0">v0</option>,
-      <option value="v1">v1</option>,
-      <option value="v2">v2</option>,
-      <option value="v3">v3</option>,
-      <option value="v4">v4</option>,
-      <option value="v5">v5</option>,
-      <option value="v6">v6</option>,
-      <option value="v7">v7</option>,
-      <option value="v8">v8</option>,
-      <option value="v9">v9</option>,
-      <option value="v10">v10</option>,
-      <option value="v11">v11</option>,
-      <option value="v12">v12</option>,
-      <option value="v13">v13</option>,
-      <option value="v14">v14</option>,
-      <option value="v15">v15</option>,
-      <option value="v16">v16</option>
-      ]
-
-    } else {
-      this.difficulties =
-      [
-      <option value="5.10a">5.10a</option>,
-      <option value="5.10b">5.10b</option>,
-      <option value="5.10c">5.10c</option>,
-      <option value="5.10d">5.10d</option>,
-      <option value="5.11a">5.11a</option>,
-      <option value="5.11b">5.11b</option>,
-      <option value="5.11c">5.11c</option>,
-      <option value="5.11d">5.11d</option>,
-      <option value="5.12a">5.12a</option>,
-      <option value="5.12b">5.12b</option>,
-      <option value="5.12c">5.12c</option>,
-      <option value="5.12d">5.12d</option>,
-      <option value="5.13a">5.13a</option>,
-      <option value="5.13b">5.13b</option>,
-      <option value="5.13c">5.13c</option>,
-      <option value="5.13d">5.13d</option>,
-      <option value="5.14a">5.14a</option>,
-      <option value="5.14b">5.14b</option>,
-      <option value="5.14c">5.14c</option>,
-      <option value="5.14d">5.14d</option>,
-      <option value="5.15a">5.15a</option>,
-      <option value="5.15b">5.15b</option>,
-      <option value="5.15c">5.15c</option>,
-      <option value="5.15d">5.15d</option>
-      ]
-    }
   }
 
   handleChange(event) {
-    const target = event.target
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name
-
-    this.setState({
-      [name]: value
-    })
-
-    if (name === "type") {
-      this.setDifficulty(value);
-    }
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
-    event.preventDefault()
+    // event.preventDefault()
     console.log(this.state);
   }
 
   difficultyField(){
     return (
-      <div className="field">
-        <label className="label">Difficulty</label>
-        <div className="control">
-          <div className="select">
-            <select
-              value={this.state.difficulty}
-              name="difficulty"
-              onChange={this.handleChange}
-            >
-            {this.difficulties}
-            </select>
-          </div>
-        </div>
-      </div>
+      <FormControl component="fieldset">
+      <FormLabel component="legend">Difficulty</FormLabel>
+        <Select
+          value={this.state.difficulty}
+          onChange={this.handleChange}
+          inputProps={{
+            name: "difficulty",
+            id: "difficulty"
+          }}
+        >
+          {this.difficulties.map((difficulty, idx) => (
+            <MenuItem key={`${idx}`} value={difficulty["value"]}>{difficulty["label"]}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     )
   }
 
   render() {
-    const type = this.state.type;
-    const renderDifficulty = type === "" ? (<div> <h5> Please select type </h5> </div>) : this.difficultyField()
+    this.difficulties = this.props.type === "bouldering" ? boulderingOptions : topropingOptions
+    var renderDifficulty = (<div> <h5> Please select type </h5> </div>) 
+    if ((this.props.type === "bouldering") || (this.props.type === "top-roping")) {
+      renderDifficulty = this.difficultyField()
+    }
 
     return (
-      <div className="routesForm">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Climbing App</h1>
-        </header>
-        <div className="container">
-          <div className="columns">
-            <div className="column is-9">
-              <form className="form" onSubmit={this.handleSubmit}>
-
-                {/* replace with user info*/}
-                <div className="field">
-                  <label className="label">Name</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="text"
-                      name="fullname"
-                      value={this.state.fullname}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="field">
-                  <div className="control">
-                    <label className="label">Type: </label>
-                    <label className="radio">
-                      <input
-                        type="radio"
-                        name="type"
-                        onChange={this.handleChange}
-                        value="bouldering"
-                        checked={this.state.type === "bouldering"}
-                      />
-                      Bouldering
-                    </label>
-                    <label className="radio">
-                      <input
-                        type="radio"
-                        name="type"
-                        onChange={this.handleChange}
-                        value="top-roping"
-                        checked={this.state.type === "top-roping"}
-                      />
-                      Top-roping
-                    </label>
-                  </div>
-                </div>
-
-                {renderDifficulty}
-
-                <div className="field">
-                  <label className="label">Finish</label>
-                  <div className="control">
-                    <div className="select">
-                      <select
-                        value={this.state.finish}
-                        name="finish"
-                        onChange={this.handleChange}
-                      >
-                      <option value="onsight">Onsight</option>,
-                      <option value="flash">Flash</option>,
-                      <option value="send">Send</option>,
-                      <option value="project">Project</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="field">
-                  <div className="control">
-                    <input
-                      type="submit"
-                      value="Submit"
-                      className="button is-primary"
-                    />
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div className="column is-3">
-              <pre>
-                <code>
-                  <p>Full Name: {this.state.fullname}</p>
-                  <p>type: {this.state.type}</p>
-                  <p>difficulties: {this.state.difficulty}</p>
-                  <p>finish: {this.state.finish}</p>
-                </code>
-              </pre>
-            </div>
-          </div>
-        </div>
-      </div>
+      <span>
+        {renderDifficulty}
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Finish</FormLabel>
+          <Select
+            value={this.state.finish}
+            onChange={this.handleChange}
+            inputProps={{
+              name: "finish",
+              id: "difficulty"
+            }}
+          >
+            {finishOptions.map((finish, idx) => (
+              <MenuItem key={`${idx}`} value={finish["value"]}>{finish["label"]}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </span>
     );
   }
 }
 
-export default routesForm;
+export default withStyles(styles) (RoutesForm);
